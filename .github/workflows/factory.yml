@@ -1,0 +1,26 @@
+name: Ghost_Factory_Action
+
+on:
+  workflow_dispatch: # Garde le bouton manuel pour tes tests
+  schedule:
+    - cron: '30 8 * * *' # Ton agent travaillera seul à 8h30 UTC chaque jour
+
+jobs:
+  run_factory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Installation des outils (PyGithub)
+        run: pip install PyGithub
+
+      - name: Execution de l'Agent
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        run: python deploy.py
