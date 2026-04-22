@@ -12,6 +12,16 @@ user = g.get_user()
 domaine, tache = brain.get_random_project()
 repo_name = f"Project-{domaine}-{tache.replace(' ', '-')}"
 
+templates = {
+    "Physique_L1": "print('Calcul de trajectoire...\\ng = 9.81\\nt = 1.0\\ny = 0.5 * g * t**2\\nprint(f\"Position: {y}m\")')",
+    "IA_Data": "import numpy as np\nprint('Chargement du modèle neurone...\\nDone.')",
+    "Reseaux": "import socket\nprint(f'Scan du réseau sur le port 80...')",
+    "Informatique": "print('Système initialisé. Accès au Kernel KKK...')"
+}
+
+
+code_a_injecter = templates.get(domaine, "print('Hello World')")
+
 try:
     
     repo = user.create_repo(repo_name, description=f"Projet automatique : {tache}", auto_init=True)
