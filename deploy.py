@@ -29,6 +29,7 @@ try:
     
     readme_content = f"# {tache}\nDomaine : {domaine}\n\nGénéré par Ghost-Factory."
     repo.create_file("README.md", "Initial commit", readme_content)
+    repo.create_file("main.py", "Ajout du script principal", code_a_injecter)
     
     print(f"SUCCÈS : {repo_name} est en ligne !")
 except Exception as e:
